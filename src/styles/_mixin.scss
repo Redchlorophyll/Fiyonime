@@ -1,0 +1,16 @@
+@mixin flexbox($content:center) {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: $content;
+}
+
+@mixin limitText($maxLine:1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $maxLine; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}

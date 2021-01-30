@@ -1,0 +1,53 @@
+@use "variables" as v;
+
+.aside {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 250px;
+  margin-bottom: 150px;
+
+  .social-media {
+    &-title {
+      text-align: center;
+      margin-bottom: 25px;
+      h1 {
+        font-size: 30px;
+        font-weight: 700;
+        color: #9A9A9A;
+
+        span {
+          color: v.$purple;
+        }
+      }
+    }
+
+    &-wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 350px;
+      img {
+        width: 50px;
+      }
+    }
+
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .social-media {
+    &-title {
+      h1 {
+        font-size: 20px !important;
+      }
+    }
+
+    &-wrapper {
+      width: 200px !important;
+      img {
+        width: 30px !important;
+      }
+    }
+  }
+}
