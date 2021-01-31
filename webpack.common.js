@@ -34,6 +34,10 @@ module.exports = {
       template: "./src/pages/detail.html",
       filename: "./pages/detail.html"
     }),
+    new HtmlWebpackPlugin({
+      template: "./src/pages/detail.html",
+      filename: "./pages/detail.html"
+    }),
   ],
   module: {
     rules: [
