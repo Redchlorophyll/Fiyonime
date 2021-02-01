@@ -10,6 +10,11 @@
     margin-left: 20px;
     margin-bottom: 10px;
     font-size: 10px;
+
+    span {
+      font-weight: bold;
+      font-size: 15px;
+    }
   }
   .list-wrapper {
     width: 775px;
@@ -35,14 +40,13 @@
 
           span {
             color: #fff;
-            h1 {
-              font-weight: 300;
-              margin-left: 7px;
-              margin-top: 5px;
-              font-size: 12px;
+            font-weight: 300;
+            margin-left: 7px;
+            margin-top: 5px;
+            font-size: 12px;
 
-              @include mixin.limitText(2);
-            }
+            @include mixin.limitText(2);
+          
           }
         }
       }

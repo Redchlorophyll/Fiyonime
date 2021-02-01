@@ -1,0 +1,140 @@
+@use "variables" as v;
+@use "mixin";
+
+.detail {
+  @include mixin.flexbox();
+}
+
+.detail-wrapper {
+  margin-left: 5px;
+}
+
+.header-detail {
+  @include mixin.flexbox();
+  width: 85%;
+
+  .image-cover {
+    width: 50%;
+    img {
+      width: 120px;
+    }
+  }
+
+  .title-wrapper {
+
+    h1 {
+      font-size: 13px;
+      @include mixin.limitText(2);
+    }
+
+    h2 {
+      font-size: 10px;
+      color: grey;
+      @include mixin.limitText(1);
+    }
+  }
+
+  .card-wrapper {
+    display: flex;
+  }
+
+  .pubilisher-card, .eps-card {
+    margin-top: 5px;
+    width: 48%;
+    height: 70px;
+    background-color: white;
+    box-shadow: v.$default-box-shadow;
+  }
+
+  .pubilisher-card {
+    margin-right: 4%;
+  }
+
+  .information-card {
+    margin-top: 10px;
+    width: 100%;
+    box-shadow: v.$default-box-shadow;
+    height: 40px;
+    background-color: white;
+    @include mixin.flexbox();
+
+    h3 {
+      font-size: 8px;
+    }
+
+    .score {
+      background-color: #FF9900;
+      color: white;
+    }
+
+    .rate {
+      font-weight: bold;
+      font-size: 10px;
+    }
+
+    .score-wrapper, .rank-wrapper, .popularity-wrapper {
+      width: 30%;
+      text-align: center;
+      overflow: hidden;
+      span {
+        display: block;
+      }
+
+      .user-score {
+        font-size: 7px;
+      }
+    }
+  }
+}
+
+.genre-wrapper {
+  width: 100%;
+  @include mixin.flexbox();
+  justify-content: center;
+
+  .genres {
+    width: 85%;
+    min-height: 50px;
+    background-color: pink;
+  }
+}
+
+.flex-card {
+  width: 100%;
+  width: 100%;
+  @include mixin.flexbox();
+  margin-top: 15px;
+
+  .detail-card {
+    width: 500px;
+    min-height: 200px;
+    background-color: white;
+    box-shadow: v.$default-box-shadow;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .flex-card {
+    .detail-card {
+      width: 380px !important;
+    }
+  }
+}
+
+@media only screen and (min-width:375px) {
+  .header-detail {
+    width: 320px;
+  }
+
+  .genres {
+    width: 320px !important;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .flex-card {
+    .detail-card {
+      width: 90vw !important;
+    }
+  }
+}
