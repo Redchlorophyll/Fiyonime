@@ -1,0 +1,10 @@
+.hide-content {
+  opacity: 0;
+  transition: 1s;
+  transform: translateY(10%);
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}

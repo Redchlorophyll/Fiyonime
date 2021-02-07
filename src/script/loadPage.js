@@ -22,6 +22,13 @@ function loadPage(page) {
     })
     .then((html) => {
       content.innerHTML = html;
+      // window.setTimeout(function, milliseconds);
+    })
+    .then((htmlcontent) => {
+      window.setTimeout(() => {
+        const container = document.querySelector(".content-container");
+        container.classList.toggle("fade-in");
+      }, 0);
     })
     .catch((err) => {
       console.log(err);
