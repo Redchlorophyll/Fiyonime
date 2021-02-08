@@ -39,9 +39,18 @@ function loadPage(page) {
 
 document.addEventListener("DOMContentLoaded", () => {
   //load page content
-  let page = window.location.hash.substr(1); //get url last name
-  if (page == '') page = "home";
-  loadPage(page);
-  getPagebyUrl();
+  if(window.location.pathname.split("/").pop() == "") {
+    let page = window.location.hash.substr(1); //get url last name
+    if (page == '') page = "home";
+    loadPage(page);
+    getPagebyUrl();
+  } else {
+    window.setTimeout(() => {
+      const container = document.querySelector(".content-container");
+      container.classList.toggle("fade-in");
+    }, 0);
+  }
+
+
 
 })

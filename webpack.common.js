@@ -11,6 +11,11 @@ module.exports = {
       favicon: "./src/assets/favicon.ico"
     }),
     new HtmlWebpackPlugin({
+      template: "./src/detail.html",
+      filename: "detail.html",
+      favicon: "./src/assets/favicon.ico"
+    }),
+    new HtmlWebpackPlugin({
       template: "./src/pages/home.html",
       filename: "./pages/home.html"
     }),
