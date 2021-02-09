@@ -1,0 +1,8 @@
+@use "mixin";
+
+.preloader-container {
+  width: 100%;
+  padding-top: 25vh;
+
+  @include mixin.flexbox();
+}
