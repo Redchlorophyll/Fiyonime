@@ -1,3 +1,5 @@
+import {getTomorrowSchedules, getTopData, upComing} from "./api.js";
+
 function getPagebyUrl() {
   const link = document.querySelectorAll(".nav-url");
 
@@ -22,7 +24,14 @@ function loadPage(page) {
     })
     .then((html) => {
       content.innerHTML = html;
-      // window.setTimeout(function, milliseconds);
+
+      if (page === "home") {
+        getTomorrowSchedules();
+        upComing();
+        getTopData();
+        getTopData("anime", "movie");
+        getTopData("manga");
+      }
     })
     .then((htmlcontent) => {
       window.setTimeout(() => {

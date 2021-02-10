@@ -1,21 +1,34 @@
-function animeCard(arrayName, data, parent) {
+export function animeCard(arrayName, data, parent) {
   let animeCardHtml = ``;
-  data[arrayName].forEach(data => {
-    animecardHtml += `
-      <a class="anime-link" href="detail.html?mal_id=${data.id}">
-        <div class="anime">
-          <div class="wrapper">
-            <img src="${data.image_url}" alt="">
-            <div class="anime-title">
-              <span> ${data.title} </span>
+  console.log(`arrayName: ${arrayName}, parent:${parent}`);
+
+  for (let [index, anime] of data[arrayName.toLowerCase()].entries()) {
+    if(index < 11) {
+      animeCardHtml += `
+        <a class="anime-link" href="detail.html?mal_id=${anime.mal_id}">
+          <div class="anime">
+            <div class="wrapper">
+              <img src="${anime.image_url}" alt="">
+              <div class="anime-title">
+                <span> ${anime.title} </span>
+              </div>
             </div>
           </div>
-        </div>
-      </a>
-    `;
-  });
+        </a>`;
+    } else {
+        animeCardHtml += `
+        <div class="show-more">
+          <span>
+            <h1>SHOW MORE</h1>
+          </span>
+        </div>`;
 
-  document.getElementById(parent).innerHtml = animeCardHtml;
+        break;
+    }
+  }
+
+  document.getElementById(parent).innerHTML = animeCardHtml;
 }
 
-export default animeCard;
+
+// export default animeCard() {}
