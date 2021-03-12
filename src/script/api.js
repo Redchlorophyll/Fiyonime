@@ -1,4 +1,5 @@
 import { animeCard } from "./components/animeCard.js";
+import { animeDetailPage } from "./components/animeDetail.js";
 
 function url(endpoint) {
   return `https://api.jikan.moe/v3/${endpoint}`;
@@ -69,11 +70,12 @@ async function upComing(type="anime") {
 async function animeDetail(type="anime",id) {
   try {
     const responseJson = await fetch(url(`${type}/${id}`));
-    const status = await status(responseJson);
-    const json = await response.json(status);
+    const response = await status(responseJson);
+    const json = await response.json();
+    animeDetailPage(json);
   } catch(err) {
     console.log(err);
   }
 }
 
-export {getTomorrowSchedules, getTopData, upComing};
+export {getTomorrowSchedules, getTopData, upComing, animeDetail};

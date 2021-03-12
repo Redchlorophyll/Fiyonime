@@ -1,4 +1,4 @@
-import {getTomorrowSchedules, getTopData, upComing} from "./api.js";
+import {getTomorrowSchedules, getTopData, upComing, animeDetail} from "./api.js";
 
 function getPagebyUrl() {
   const link = document.querySelectorAll(".nav-url");
@@ -45,9 +45,20 @@ function loadPage(page) {
     });
 }
 
+function loadDetailPage() {
+  const pageName = window.location.href.split('?')[0].split("/")[3];
+
+  if (pageName === "detail.html") {
+    const urlParams = new URLSearchParams(window.location.search);
+    const getMalId = urlParams.get("mal_id");
+    animeDetail("anime", getMalId);
+  }
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
   //load page content
+
   if(window.location.pathname.split("/").pop() == "") {
     let page = window.location.hash.substr(1); //get url last name
     if (page == '') page = "home";
@@ -57,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.setTimeout(() => {
       const container = document.querySelector(".content-container");
       container.classList.toggle("fade-in");
+      loadDetailPage()
     }, 0);
   }
 

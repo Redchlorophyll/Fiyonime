@@ -1,6 +1,6 @@
 export function animeCard(arrayName, data, parent) {
   let animeCardHtml = ``;
-  console.log(`arrayName: ${arrayName}, parent:${parent}`);
+  // console.log(`arrayName: ${arrayName}, parent:${parent}`);
 
   for (let [index, anime] of data[arrayName.toLowerCase()].entries()) {
     if(index < 11) {
