@@ -5,7 +5,7 @@ export function animeCard(arrayName, data, parent) {
   for (let [index, anime] of data[arrayName.toLowerCase()].entries()) {
     if(index < 11) {
       animeCardHtml += `
-        <a class="anime-link" href="detail.html?mal_id=${anime.mal_id}">
+        <a class="anime-link" href="detail.html?mal_id=${anime.mal_id}&detail=content">
           <div class="anime">
             <div class="wrapper">
               <img src="${anime.image_url}" alt="">

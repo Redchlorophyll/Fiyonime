@@ -1,5 +1,5 @@
 import { animeCard } from "./components/animeCard.js";
-import { animeDetailPage } from "./components/animeDetail.js";
+import { animeDetailPage, detailContent } from "./components/animeDetail.js";
 
 function url(endpoint) {
   return `https://api.jikan.moe/v3/${endpoint}`;
@@ -67,12 +67,29 @@ async function upComing(type="anime") {
   }
 }
 
+// async function epsiodes(id) {
+//   try {
+//     const responseJson = await fetch(url(`anime/${id}/episodes`));
+//     const response = await status(responseJson);
+//     const json = await response.json();
+//     return json
+//   } catch(err) {
+//     console.log(err);
+//   }
+// }
+
 async function animeDetail(type="anime",id) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const detailtype = urlParams.get("detail");
+
   try {
     const responseJson = await fetch(url(`${type}/${id}`));
     const response = await status(responseJson);
     const json = await response.json();
     animeDetailPage(json);
+    if (detailtype === "content") {
+      detailContent(json)
+    }
   } catch(err) {
     console.log(err);
   }
