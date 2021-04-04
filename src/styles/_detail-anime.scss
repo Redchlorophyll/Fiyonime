@@ -335,6 +335,10 @@
       .score-wrapper {
         .user-score {
           font-size: 10px;
+
+          #scored_by {
+            display: inline;
+          }
         }
       }
     }

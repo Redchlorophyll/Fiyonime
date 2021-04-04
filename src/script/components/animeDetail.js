@@ -1,38 +1,47 @@
 export function animeDetailPage(json) {
-  //update image cover
-  document.getElementById("image-cover").src = json.image_url;
-
-
-  //update detail title
-  document.getElementById("title").innerText = json.title;
-  document.getElementById("title-en").innerText = json.title_english;
-
-  //update leaderboard
-  document.getElementById("score").innerText = json.score;
-  document.getElementById("user-score").innerText = `${json.scored_by} user`;
-  document.getElementById("rank").innerText = `#${json.rank}`;
-  document.getElementById("popularity").innerText = `#${json.popularity}`;
-
-  //info card
-  document.getElementById("type").innerText = json.type;
-  document.getElementById("studio").innerText = json.studios[0].name;
-
-  let status
-  if (json.status == "Currently Airing") {
-    status = "Ongoing";
-  } else {
-    status = "Finished";
+  const objectKeys = Object.keys(json);
+  console.log(objectKeys)
+  for (let key of objectKeys) {
+    if (document.getElementById(key)) {
+      if (key == "image_url") {
+        let a = document.getElementById("image_url").src = json[key];
+        console.log("gambar")
+      } else if (key == "studios") {
+        document.getElementById("studios").innerText = json[key][0].name;
+        console.log("studio")
+      } else {
+        if (json[key]) {
+          document.getElementById(key).innerText = json[key];
+        } else {
+          document.getElementById(key).innerText = "N/A";
+        }
+      }
+    }
   }
-
-  document.getElementById("status").innerText = status;
-  document.getElementById("total-eps").innerText = json.episodes;
 }
 
 export function detailContent(json) {
   const synonims = json.title_synonyms;
   const genres = json.genres;
+  const licensors = json.licensors;
+  const producers = json.producers;
+  const studios = json.studios;
+  const adaptations = json.adaptations;
+  let genresDetails = "";
   let synonimDetails = "";
+  let licensorDetails = "";
+  let producerDetails = "";
+  let studioDetails = "";
+  let openingDetails = "";
+  let endingDetails = "";
 
+  for (let n in adaptations) {
+    if(n != adaptations.length -1) {
+      adaptationDetails += `${adaptations[n]}, `;
+    } else {
+      adaptationDetails += `${adaptations[n]}.`;
+    }
+  }
 
   for (let n in synonims) {
     if(n != synonims.length -1) {
@@ -43,7 +52,43 @@ export function detailContent(json) {
   }
 
   for (let n in genres) {
+    if(n != genres.length -1) {
+      genresDetails += `${genres[n].name}, `;
+    } else {
+      genresDetails += `${genres[n].name}.`;
+    }
+  }
 
+  for (let song of json.opening_themes) {
+    openingDetails += `<li>${song}</li>`
+  }
+
+  for (let song of json.ending_themes) {
+    endingDetails += `<li>${song}</li>`
+  }
+
+  for (let n in licensors) {
+    if(n != licensors.length -1) {
+      licensorDetails += `${licensors[n].name}, `;
+    } else {
+      licensorDetails += `${licensors[n].name}.`;
+    }
+  }
+
+  for (let n in producers) {
+    if(n != producers.length -1) {
+      producerDetails += `${producers[n].name}, `;
+    } else {
+      producerDetails += `${producers[n].name}.`;
+    }
+  }
+
+  for (let n in studios) {
+    if(n != studios.length -1) {
+      studioDetails += `${studios[n].name}, `;
+    } else {
+      studioDetails += `${studios[n].name}.`;
+    }
   }
 
   const detail = `
@@ -151,11 +196,7 @@ export function detailContent(json) {
           </div>
           <div class="info-content">
             <ul>
-              <li>opening1</li>
-              <li>opening1</li>
-              <li>opening1</li>
-              <li>opening1</li>
-
+              ${openingDetails}
             </ul>
           </div>
         </div>
@@ -165,11 +206,7 @@ export function detailContent(json) {
           </div>
           <div class="info-content">
             <ul>
-              <li>opening1</li>
-              <li>opening1</li>
-              <li>opening1</li>
-              <li>opening1</li>
-              <li>opening1</li>
+              ${endingDetails}
             </ul>
           </div>
         </div>
@@ -227,7 +264,7 @@ export function detailContent(json) {
             <span>aired</span>
           </div>
           <div class="info-content">
-            <span>agnaw</span>
+            <span>${new Date(json.aired.from).toLocaleDateString("en-US")}</span>
           </div>
         </div>
         <div class="info more">
@@ -243,7 +280,7 @@ export function detailContent(json) {
             <span>broadcast</span>
           </div>
           <div class="info-content">
-            <span>agnaw</span>
+            <span>${json.broadcasts}</span>
           </div>
         </div>
         <div class="info more">
@@ -251,7 +288,7 @@ export function detailContent(json) {
             <span>producers</span>
           </div>
           <div class="info-content">
-            <span>agnaw</span>
+            <span>${producerDetails}</span>
           </div>
         </div>
         <div class="info more">
@@ -259,7 +296,7 @@ export function detailContent(json) {
             <span>licensor</span>
           </div>
           <div class="info-content">
-            <span>agnaw</span>
+            <span>${licensorDetails}</span>
           </div>
         </div>
         <div class="info more">
@@ -267,7 +304,7 @@ export function detailContent(json) {
             <span>studios</span>
           </div>
           <div class="info-content">
-            <span>agnaw</span>
+            <span>${studioDetails}</span>
           </div>
         </div>
         <div class="info more">
@@ -283,7 +320,7 @@ export function detailContent(json) {
             <span>genres</span>
           </div>
           <div class="info-content">
-            <span>agnaw</span>
+            <span>${genresDetails}</span>
           </div>
         </div>
         <div class="info more">
